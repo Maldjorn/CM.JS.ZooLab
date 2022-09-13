@@ -1,3 +1,3 @@
 const { Animal } = require("../Animal.js");
 
-class Bird extends Animal {}
+module.exports.Bird = class Bird extends Animal {};
