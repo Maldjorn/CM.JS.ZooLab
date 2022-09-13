@@ -6,7 +6,7 @@ module.exports.Animal = class Animal {
         this.feedTimes = [];
         this.feedSchedule = [];
         this.friendlyWith = [];
-        this.IsSick = id % 2 == 0 ? true : false;
+        this.IsSick = this.id % 2 == 0 ? true : false;
         if (this.constructor == Animal) {
             throw new Error("Abstract classes can't be instantiated.");
         }

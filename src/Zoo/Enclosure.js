@@ -1,4 +1,4 @@
-module.exports = class Enclosure {
+module.exports.Enclosure = class Enclosure {
     constructor(name, squareFeet, parentZoo) {
         this.name = name;
         this.squareFeet = squareFeet;
@@ -9,7 +9,6 @@ module.exports = class Enclosure {
         if (this.squareFeet < animal.requiredSpaceSqFt) {
             throw new Error("No avaible space");
         }
-        this.animals.push(animal);
         if (this.animals.length != 0) {
             for (let i = 0; i < this.animals.length; i++) {
                 if (!animal.IsFriendlyWith(animal[i])) {
@@ -17,7 +16,9 @@ module.exports = class Enclosure {
                 }
             }
         }
+
         this.squareFeet -= animal.requiredSpaceSqFt;
         this.animals.push(animal);
+        console.log("Animal added to " + this.name);
     }
 };
