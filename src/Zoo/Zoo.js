@@ -40,9 +40,27 @@ module.exports.Zoo = class Zoo {
         }
     }
 
-    HireEmployee(employee) {}
+    HireEmployee(employee) {
+        this.employees.push(employee);
+        //TODO: add logic
+    }
 
-    FeedAnimals(dateTime) {}
+    FeedAnimals(food) {
+        let animal = this.GetAnimalList();
+        let avaibleZooKeeperIndex = 0;
+        for (let i = 0; i < animal.length; i++) {
+            let zooKeepers = this.GetZooKeeperList();
+            for (let j = 0; j < animal[i].feedSchedule.length; j++) {
+                if (zooKeepers[avaibleZooKeeperIndex].HasAnimalExperience(animal[i])) {
+                    zooKeepers[avaibleZooKeeperIndex].FeedAnimal(animal[i], food);
+                    avaibleZooKeeperIndex++;
+                }
+                if (avaibleZooKeeperIndex >= zooKeepers.length) {
+                    avaibleZooKeeperIndex = 0;
+                }
+            }
+        }
+    }
 
     HealAnimals(medicine) {}
 
@@ -63,5 +81,13 @@ module.exports.Zoo = class Zoo {
         return animals;
     }
 
-    GetZooKeeperList() {}
+    GetZooKeeperList() {
+        let zooKeepers = [];
+        this.employees.forEach((employee) => {
+            if (employee.constructor.name == "ZooKeeper") {
+                zooKeepers.push(employee);
+            }
+        });
+        return zooKeepers;
+    }
 };

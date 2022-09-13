@@ -1,3 +1,5 @@
+const { FeedTime } = require("./FeedTime.js");
+
 module.exports.Animal = class Animal {
     constructor() {
         this.id = Math.floor(Math.random() * 500);
@@ -15,7 +17,10 @@ module.exports.Animal = class Animal {
         return this.friendlyWith.includes(animal);
     }
     Feed(food, zooKeeper) {
-        throw new Error("Method 'Feed' must be implemented.");
+        this.feedTimes.push(new FeedTime(new Date(), zooKeeper));
+        console.log(
+            this.constructor.name + "was fed by " + zooKeeper.firstName + " " + zooKeeper.lastName + "with " + food.constructor.name
+        );
     }
     AddFeedSchedule(hours) {
         this.feedSchedule = hours;
