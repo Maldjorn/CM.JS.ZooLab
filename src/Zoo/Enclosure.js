@@ -11,7 +11,7 @@ module.exports.Enclosure = class Enclosure {
         }
         if (this.animals.length != 0) {
             for (let i = 0; i < this.animals.length; i++) {
-                if (!animal.IsFriendlyWith(animal[i])) {
+                if (!animal.IsFriendlyWith(this.animals[i])) {
                     throw new Error("Not friendly animal");
                 }
             }

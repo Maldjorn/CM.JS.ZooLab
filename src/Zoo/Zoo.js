@@ -16,7 +16,7 @@ module.exports.Zoo = class Zoo {
     FindAvailableEnclosure(animal) {
         if (this.enclosures.length !== 0) {
             for (let i = 0; i < this.enclosures.length; i++) {
-                if (!this.enclosures[i].squareFeet < animal.requiredSpaceSqFt) {
+                if (!(this.enclosures[i].squareFeet < animal.requiredSpaceSqFt)) {
                     if (this.enclosures[i].animals.length === 0) {
                         console.log("Enclosure was find");
                         return this.enclosures[i];
@@ -24,7 +24,7 @@ module.exports.Zoo = class Zoo {
                     for (let j = 0; j < this.enclosures[i].animals.length; j++) {
                         if (this.enclosures[i].animals[j].IsFriendlyWith(animal)) {
                             console.log("Enclosure was find");
-                            return enclosure;
+                            return this.enclosures[i];
                         } else {
                             console.log("Not freindly animals");
                             return undefined;
@@ -47,6 +47,8 @@ module.exports.Zoo = class Zoo {
         if (isValid) {
             this.employees.push(employee);
             console.log("Employee hired");
+        } else {
+            throw new Error("No animal experience");
         }
         //TODO: add logic
     }
@@ -68,13 +70,26 @@ module.exports.Zoo = class Zoo {
         }
     }
 
-    HealAnimals(medicine) {}
+    HealAnimals(medicine) {
+        let animal = this.GetAnimalList();
+        let avaibleVeterinarianIndex = 0;
+        let veterinarians = this.GetVeterinarianList();
+        for (let i = 0; i < animal.length; i++) {
+            if (veterinarians[avaibleVeterinarianIndex].HasAnimalExperience(animal[i])) {
+                veterinarians[avaibleVeterinarianIndex].HealAnimal(animal[i], medicine);
+                avaibleVeterinarianIndex++;
+            }
+            if (avaibleVeterinarianIndex >= veterinarians.length) {
+                avaibleVeterinarianIndex = 0;
+            }
+        }
+    }
 
-    AddAnimal() {
+    AddAnimal(animal) {
         let availableEnclosure = this.FindAvailableEnclosure(animal);
         if (availableEnclosure !== null) {
             availableEnclosure.AddAnimal(animal);
-        } else console.log(`You cannot add ${animal.className} to a filled enclosure.`);
+        }
     }
 
     GetAnimalList() {
@@ -95,5 +110,15 @@ module.exports.Zoo = class Zoo {
             }
         });
         return zooKeepers;
+    }
+
+    GetVeterinarianList() {
+        let veterinarians = [];
+        this.employees.forEach((employee) => {
+            if (employee.constructor.name == "Veterinarian") {
+                veterinarians.push(employee);
+            }
+        });
+        return veterinarians;
     }
 };

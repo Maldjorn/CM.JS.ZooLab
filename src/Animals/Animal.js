@@ -7,25 +7,25 @@ module.exports.Animal = class Animal {
         this.favoriteFood;
         this.feedTimes = [];
         this.feedSchedule = [];
-        this.friendlyWith = [];
-        this.IsSick = this.id % 2 == 0 ? true : false;
+        this.friends = [];
+        this.isSick = this.id % 2 == 0 ? true : false;
         if (this.constructor == Animal) {
             throw new Error("Abstract classes can't be instantiated.");
         }
     }
     IsFriendlyWith(animal) {
-        return this.friendlyWith.includes(animal);
+        return this.friends.includes(animal.constructor.name);
     }
     Feed(food, zooKeeper) {
         this.feedTimes.push(new FeedTime(new Date(), zooKeeper));
         console.log(
-            this.constructor.name + "was fed by " + zooKeeper.firstName + " " + zooKeeper.lastName + "with " + food.constructor.name
+            this.constructor.name + " was fed by " + zooKeeper.firstName + " " + zooKeeper.lastName + " with " + food.constructor.name
         );
     }
     AddFeedSchedule(hours) {
         this.feedSchedule = hours;
     }
     Heal(medicine) {
-        this.IsSick = false;
+        this.isSick = false;
     }
 };
