@@ -1,4 +1,5 @@
 const { Enclosure } = require("../Zoo/Enclosure.js");
+const { HireValidatorProvider } = require("../Validator/HireValidatorProvider.js");
 
 module.exports.Zoo = class Zoo {
     constructor(location) {
@@ -41,7 +42,12 @@ module.exports.Zoo = class Zoo {
     }
 
     HireEmployee(employee) {
-        this.employees.push(employee);
+        let validator = new HireValidatorProvider();
+        let isValid = validator.ValidateEmployee(employee, this);
+        if (isValid) {
+            this.employees.push(employee);
+            console.log("Employee hired");
+        }
         //TODO: add logic
     }
 
