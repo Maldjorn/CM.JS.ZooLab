@@ -20,7 +20,7 @@ module.exports.Veterinarian = class Veterinarian extends Employee {
 
     HealAnimal(animal, medicine) {
         if (animal.isSick == true && this.HasAnimalExperience(animal)) {
-            animal.Heal(medicine);
+            animal.Heal();
             console.log(animal.constructor.name + " was healed by " + this.firstName + " " + this.lastName);
         }
     }

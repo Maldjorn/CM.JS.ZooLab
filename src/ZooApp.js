@@ -2,7 +2,6 @@ const { Zoo } = require("./Zoo/Zoo.js");
 const { Enclosure } = require("./Zoo/Enclosure.js");
 const { Parrot } = require("./Animals/Birds/Parrot.js");
 const { ZooKeeper } = require("./Employees/ZooKeeper.js");
-const { Grass } = require("./FoodTypes/Grass.js");
 const { Turtle } = require("./Animals/Reptiles/Turtle.js");
 const { Veterinarian } = require("./Employees/Veterinarian.js");
 
@@ -28,5 +27,5 @@ veterinarian.AddAnimalExperience(turtle);
 zoo.HireEmployee(zooKeeper);
 
 zoo.HireEmployee(veterinarian);
-zoo.FeedAnimals(new Grass());
+zoo.FeedAnimals();
 zoo.HealAnimals(new Antibiotics());

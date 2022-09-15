@@ -1,3 +1,3 @@
 const { Food } = require("./Food.js");
 
-class Vegetable extends Food {}
+module.exports.Vegetable = class Vegetable extends Food {};

@@ -7,7 +7,7 @@ module.exports.Enclosure = class Enclosure {
     }
     AddAnimal(animal) {
         if (this.squareFeet < animal.requiredSpaceSqFt) {
-            throw new Error("No avaible space");
+            throw new Error("No available space");
         }
         if (this.animals.length != 0) {
             for (let i = 0; i < this.animals.length; i++) {

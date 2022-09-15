@@ -72,7 +72,7 @@ test("Should  be able to feed animals", () => {
     let zooKeeper = new ZooKeeper("Andrew", "Last");
     zooKeeper.AddAnimalExperience(snake);
     zoo.HireEmployee(zooKeeper);
-    zoo.FeedAnimals(new Grass());
+    zoo.FeedAnimals();
     expect(zoo.enclosures[0].animals[0].feedTimes.length).toBe(1);
 });
 

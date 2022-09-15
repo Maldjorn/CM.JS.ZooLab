@@ -25,7 +25,7 @@ module.exports.Animal = class Animal {
     AddFeedSchedule(hours) {
         this.feedSchedule = hours;
     }
-    Heal(medicine) {
+    Heal() {
         this.isSick = false;
     }
 };

@@ -1,3 +1,3 @@
 const { Medicine } = require("./Medicine.js");
 
-class Antiflammatory extends Medicine {}
+module.exports.Antiflammatory = class Antiflammatory extends Medicine {};

@@ -53,14 +53,14 @@ module.exports.Zoo = class Zoo {
         //TODO: add logic
     }
 
-    FeedAnimals(food) {
+    FeedAnimals() {
         let animal = this.GetAnimalList();
         let avaibleZooKeeperIndex = 0;
         for (let i = 0; i < animal.length; i++) {
             let zooKeepers = this.GetZooKeeperList();
             for (let j = 0; j < animal[i].feedSchedule.length; j++) {
                 if (zooKeepers[avaibleZooKeeperIndex].HasAnimalExperience(animal[i])) {
-                    zooKeepers[avaibleZooKeeperIndex].FeedAnimal(animal[i], food);
+                    zooKeepers[avaibleZooKeeperIndex].FeedAnimal(animal[i]);
                     avaibleZooKeeperIndex++;
                 }
                 if (avaibleZooKeeperIndex >= zooKeepers.length) {

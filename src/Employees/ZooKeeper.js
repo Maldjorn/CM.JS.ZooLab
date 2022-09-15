@@ -1,3 +1,6 @@
+const { Grass } = require("../FoodTypes/Grass.js");
+const { Meat } = require("../FoodTypes/Meat.js");
+const { Vegetable } = require("../FoodTypes/Vegetable.js");
 const { Employee } = require("./Employee.js");
 
 module.exports.ZooKeeper = class ZooKeeper extends Employee {
@@ -17,7 +20,9 @@ module.exports.ZooKeeper = class ZooKeeper extends Employee {
         return false;
     }
 
-    FeedAnimal(animal, food) {
-        animal.Feed(food, this);
+    FeedAnimal(animal) {
+        let foodTypes = [new Grass(), new Meat(), new Vegetable()];
+        let foodIndex = Math.floor(Math.random() * 3);
+        animal.Feed(foodTypes[foodIndex], this);
     }
 };
